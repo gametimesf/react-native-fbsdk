@@ -71,8 +71,8 @@ module.exports = {
   /**
    * Logs the user in with the requested read permissions.
    */
-  logInWithReadPermissions(permissions: Array<string>): Promise<LoginResult> {
-    return LoginManager.logInWithReadPermissions(permissions);
+  logInWithPermissions(permissions: Array<string>): Promise<LoginResult> {
+    return LoginManager.logInWithPermissions(permissions);
   },
 
   /**
