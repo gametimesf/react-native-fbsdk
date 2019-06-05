@@ -107,7 +107,7 @@ RCT_EXPORT_METHOD(logOut)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
   if (isRead) {
-    [_loginManager logInWithReadPermissions:permissions handler:requestHandler];
+    [_loginManager logInWithPermissions:permissions handler:requestHandler];
   } else {
     [_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
   }
