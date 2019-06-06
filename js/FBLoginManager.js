@@ -22,6 +22,8 @@
  */
 'use strict';
 
+import console = require('console');
+
 const LoginManager = require('react-native').NativeModules.FBLoginManager;
 /**
  * Indicates which default audience to use for sessions that post data to Facebook.
@@ -72,7 +74,8 @@ module.exports = {
    * Logs the user in with the requested read permissions.
    */
   logInWithPermissions(permissions: Array<string>): Promise<LoginResult> {
-    return LoginManager.logInWithPermissions(permissions);
+    console.log('LoginManager '+ JSON.stringify(LoginManager))
+    return LoginManager.logInWithReadPermissions(permissions);
   },
 
   /**
