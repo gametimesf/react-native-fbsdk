@@ -97,22 +97,23 @@ RCT_EXPORT_METHOD(logOut)
                      rejecter:(RCTPromiseRejectBlock)reject
                        isRead:(BOOL)isRead
 {
-  FBSDKLoginManagerRequestTokenHandler requestHandler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    [[FBSDKLoginManager new] logInWithPermissions:@[] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
       reject(@"FacebookSDK", @"Login Failed", error);
     } else {
       resolve(RCTBuildResultDictionary(result));
     }
-  };
+    }];
+}
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  if (isRead) {
-    [_loginManager logInWithPermissions:permissions handler:requestHandler];
-  } else {
-    [_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
-  }
+//  if (isRead) {
+//    [_loginManager logInWithPermissions:permissions handler:requestHandler];
+//  } else {
+//    [_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
+//  }
 #pragma clang diagnostic pop
-}
+
 
 static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *result)
 {
@@ -129,15 +130,6 @@ static NSString *LoginBehaviorToString(FBSDKLoginBehavior loginBehavior)
   switch (loginBehavior) {
     case FBSDKLoginBehaviorBrowser:
       result = @"browser";
-      break;
-    case FBSDKLoginBehaviorNative:
-      result = @"native";
-      break;
-    case FBSDKLoginBehaviorSystemAccount:
-      result = @"system-account";
-      break;
-    case FBSDKLoginBehaviorWeb:
-      result = @"web";
       break;
     default:
       break;

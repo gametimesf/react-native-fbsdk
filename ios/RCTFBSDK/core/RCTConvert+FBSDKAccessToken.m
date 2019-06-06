@@ -24,14 +24,15 @@
 {
   NSDictionary *data = [RCTConvert NSDictionary:json];
   if (data.count > 0) {
-    return [[FBSDKAccessToken alloc]
-            initWithTokenString:[RCTConvert NSString:data[@"accessToken"]]
-            permissions:[RCTConvert NSStringArray:data[@"permissions"]]
-            declinedPermissions:[RCTConvert NSStringArray:data[@"declinedPermissions"]]
-            appID:[RCTConvert NSString:data[@"applicationID"]]
-            userID:[RCTConvert NSString:data[@"userID"]]
-            expirationDate:[RCTConvert NSDate:data[@"expirationTime"]]
-            refreshDate:[RCTConvert NSDate:data[@"lastRefreshTime"]]];
+      return [[FBSDKAccessToken alloc] initWithTokenString:[RCTConvert NSString:data[@"accessToken"]]
+                                               permissions:[RCTConvert NSStringArray:data[@"permissions"]]
+                                       declinedPermissions:[RCTConvert NSStringArray:data[@"declinedPermissions"]]
+                                        expiredPermissions:[RCTConvert NSStringArray:data[@"expiredPermissions"]]
+                                                     appID:[RCTConvert NSString:data[@"applicationID"]]
+                                                    userID:[RCTConvert NSString:data[@"userID"]]
+                                            expirationDate:[RCTConvert NSDate:data[@"expirationTime"]]
+                                               refreshDate:[RCTConvert NSDate:data[@"lastRefreshTime"]]
+                                  dataAccessExpirationDate:nil];
   }
   return nil;
 }
