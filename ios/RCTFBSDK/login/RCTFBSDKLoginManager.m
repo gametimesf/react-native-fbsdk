@@ -97,7 +97,7 @@ RCT_EXPORT_METHOD(logOut)
                      rejecter:(RCTPromiseRejectBlock)reject
                        isRead:(BOOL)isRead
 {
-    [[FBSDKLoginManager new] logInWithPermissions:@[] fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+    [[FBSDKLoginManager new] logInWithPermissions:permissions fromViewController:nil handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
       reject(@"FacebookSDK", @"Login Failed", error);
     } else {
